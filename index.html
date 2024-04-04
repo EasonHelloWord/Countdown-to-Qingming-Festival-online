@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜报</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+        }
+
+        .progress-container {
+            width: 80vw;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin: 10px auto;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 添加描边 */
+        }
+
+        .bar {
+            height: 100%;
+            background-color: #4caf50;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-label {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="bar" id="progress-bar"></div>
+        </div>
+        <div class="progress-label" id="progress-label"></div>
+    </div>
+
+    <script>
+        function formatTimeDelta(delta) {
+            var days = Math.floor(delta / (24 * 60 * 60));
+            delta -= days * (24 * 60 * 60);
+            var hours = Math.floor(delta / (60 * 60));
+            delta -= hours * (60 * 60);
+            var minutes = Math.floor(delta / 60);
+            return days + "天 " + hours + "小时 " + minutes + "分钟";
+        }
+
+        function updateProgress() {
+            var startTime = new Date(2024, 3, 3, 16, 0);
+            var endTime = new Date(2024, 3, 7);
+            var now = new Date();
+            var remainingTime = Math.max(0, endTime - now);
+            var totalTime = endTime - startTime;
+            var elapsed = now - startTime;
+            var progressPercent = (elapsed / totalTime) * 100;
+
+            document.getElementById("progress-bar").style.width = progressPercent + "%";
+            document.getElementById("progress-label").innerHTML = "假期剩余时间: " + formatTimeDelta(remainingTime / 1000) + ", 假期进度: " + progressPercent.toFixed(2) + "%";
+
+            if (now < endTime) {
+                setTimeout(updateProgress, 60000);
+            }
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
