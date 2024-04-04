@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>喜报</title>
+    <link rel="icon" type="image/png" href="function.ico"> <!-- 设置网页图标 -->
     <style>
         html, body {
             height: 100%;
@@ -39,6 +40,15 @@
         .progress-label {
             margin-top: 10px;
         }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #ddd;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +57,10 @@
             <div class="bar" id="progress-bar"></div>
         </div>
         <div class="progress-label" id="progress-label"></div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 EasonJan. 保留所有权利. <!-- 添加版权信息 -->
     </div>
 
     <script>
